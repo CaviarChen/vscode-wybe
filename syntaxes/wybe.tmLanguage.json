@@ -3,18 +3,36 @@
 	"name": "Wybe",
 	"patterns": [
 		{
-			"include": "#keywords"
+			"include": "#general"
 		},
 		{
 			"include": "#strings"
 		}
 	],
 	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.wybe",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
+		"general": {
+			"patterns": [
+				{
+					"name": "keyword.control.wybe",
+					"match": "\\b(case|if|else)\\b"
+				},
+				{
+					"name": "storage.type.function.wybe",
+					"match": "\\b(def)\\b"
+				},
+				{
+					"name": "storage.type.wybe",
+					"match": "\\b(int|float|bool|string|char)\\b"
+				},
+				{
+					"name": "storage.modifier.wybe",
+					"match": "\\b(pub|use)\\b"
+				},
+				{
+					"name": "comment.line.number-sign.wybe",
+					"match": "(#).*$\\n?"
+				}
+			]
 		},
 		"strings": {
 			"name": "string.quoted.double.wybe",
