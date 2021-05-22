@@ -14,11 +14,26 @@
 			"patterns": [
 				{
 					"name": "keyword.control.wybe",
-					"match": "\\b(case|if|else)\\b"
+					"match": "\\b(case|if|then|else|import|test|while|do|foreign|type)\\b"
 				},
 				{
-					"name": "storage.type.function.wybe",
-					"match": "\\b(def)\\b"
+					"match": "\\b(def)\\s+([_a-zA-Z][_a-zA-Z0-9]*)",
+					"captures": {
+						"1": {
+							"name": "storage.type.function.wybe"
+						},
+						"2": {
+							"name": "entity.name.function.wybe"
+						}
+					}
+				},
+				{
+					"match": "\\b([_a-zA-Z][_a-zA-Z0-9]*):([_a-zA-Z](.?[_a-zA-Z0-9])*)",
+					"captures": {
+						"2": {
+							"name": "entity.name.type.wybe"
+						}
+					}
 				},
 				{
 					"name": "storage.type.wybe",
@@ -31,6 +46,34 @@
 				{
 					"name": "comment.line.number-sign.wybe",
 					"match": "(#).*$\\n?"
+				},
+				{
+					"name": "constant.character.wybe",
+					"match": "'(.|\\.)'"
+				},
+				{
+					"name": "constant.numeric.integer.hexadecimal.wybe",
+					"match": "\\b(?i:0x[\\h_]+)"
+				},
+				{
+					"name": "constant.numeric.integer.octal.wybe",
+					"match": "\\b((0[0-7_]+))"
+				},
+				{
+					"name": "constant.numeric.integer.decimal.wybe",
+					"match": "\\b([1-9][0-9_]*|0)"
+				},
+				{
+					"name": "constant.language.bool.wybe",
+					"match": "\\b(true|false)\\b"
+				},
+				{
+					"name": "keyword.operator.output.wybe",
+					"match": "\\?"
+				},
+				{
+					"name": "keyword.operator.input-output.wybe",
+					"match": "!"
 				}
 			]
 		},
@@ -41,7 +84,7 @@
 			"patterns": [
 				{
 					"name": "constant.character.escape.wybe",
-					"match": "\\\\."
+					"match": "\\."
 				}
 			]
 		}
