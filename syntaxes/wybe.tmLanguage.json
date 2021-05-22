@@ -28,7 +28,7 @@
 					}
 				},
 				{
-					"match": "\\b([_a-zA-Z][_a-zA-Z0-9]*):([_a-zA-Z](.?[_a-zA-Z0-9])*)",
+					"match": "\\b([_a-zA-Z][_a-zA-Z0-9]*):([_a-zA-Z](\\.?[_a-zA-Z0-9])*)",
 					"captures": {
 						"2": {
 							"name": "entity.name.type.wybe"
@@ -50,6 +50,10 @@
 				{
 					"name": "constant.character.wybe",
 					"match": "'(.|\\.)'"
+				},
+				{
+					"name": "constant.numeric.float.wybe",
+					"match": "\\b(?i:(\\d+\\.\\d*(e[\\-\\+]?\\d+)?))"
 				},
 				{
 					"name": "constant.numeric.integer.hexadecimal.wybe",

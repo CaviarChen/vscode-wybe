@@ -1,8 +1,10 @@
 {
     "name": "vscode-wybe",
-    "displayName": "Wybe",
+    "displayName": "Wybe Language Support",
     "description": "",
+    "publisher": "wybe",
     "version": "0.0.1",
+    "repository": "https://github.com/CaviarChen/vscode-wybe",
     "engines": {
         "vscode": "^1.39.0"
     },
@@ -10,16 +12,25 @@
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "wybe",
-            "aliases": ["Wybe", "wybe"],
-            "extensions": [".wybe"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "wybe",
-            "scopeName": "source.wybe",
-            "path": "./syntaxes/wybe.tmLanguage.json"
-        }]
+        "languages": [
+            {
+                "id": "wybe",
+                "aliases": [
+                    "Wybe",
+                    "wybe"
+                ],
+                "extensions": [
+                    ".wybe"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "wybe",
+                "scopeName": "source.wybe",
+                "path": "./syntaxes/wybe.tmLanguage.json"
+            }
+        ]
     }
 }
