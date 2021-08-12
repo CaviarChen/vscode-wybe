@@ -138,6 +138,10 @@
 					"match": "'(.|\\.)'"
 				},
 				{
+					"name": "constant.numeric.float.wybe",
+					"match": "\\b(?i:(\\d+\\.\\d*(e[\\-\\+]?\\d+)?))"
+				},
+				{
 					"name": "constant.numeric.integer.hexadecimal.wybe",
 					"match": "\\b(?i:0x[\\h_]+)"
 				},
