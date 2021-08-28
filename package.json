@@ -3,7 +3,7 @@
     "displayName": "Wybe Language Support",
     "description": "",
     "publisher": "wybe",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "repository": "https://github.com/CaviarChen/vscode-wybe",
     "engines": {
         "vscode": "^1.39.0"
