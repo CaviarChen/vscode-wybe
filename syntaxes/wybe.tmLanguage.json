@@ -6,7 +6,7 @@
 			"include": "#general"
 		},
 		{
-			"include": "#strings"
+			"include": "#string"
 		}
 	],
 	"repository": {
@@ -16,10 +16,10 @@
 					"match": "\\b(representation\\s+is)\\s+(address|((128|64|32|16)\\s+)?float|(([1-9][0-9_]*|0)\\s+bit\\s+)?(un)?signed)\\b",
 					"captures": {
 						"1": {
-							"name": "keyword.control.wybe"
+							"name": "storage.other.representation.wybe"
 						},
 						"2": {
-							"name": "storage.type.wybe"
+							"name": "keyword.other.typerepresentation.wybe"
 						}
 					}
 				},
@@ -27,13 +27,13 @@
 					"match": "\\b(type)\\s+([_a-zA-Z]\\w*)(\\s+is\\s+(address|((128|64|32|16)\\s+)?float|(([1-9][0-9_]*|0)\\s+bit\\s+)?(un)?signed))?",
 					"captures": {
 						"1": {
-							"name": "keyword.control.wybe"
+							"name": "storage.other.typedef.wybe"
 						},
 						"2": {
 							"name": "entity.name.type.wybe"
 						},
 						"3": {
-							"name": "keyword.control.wybe"
+							"name": "storage.other.is.wybe"
 						},
 						"4": {
 							"name": "storage.type.wybe"
@@ -42,7 +42,7 @@
 				},
 				{
 					"name": "keyword.control.wybe",
-					"match": "\\b(if|else|import|while|do|for|until|break|next|when|unless|where|foreign(?: (?:lpvm|c|llvm))?|constructors?)\\b"
+					"match": "\\b(if|else|import|while|do|for|in|until|break|next|when|otherwise|unless|where|foreign(?:\\s+(?:lpvm|c|llvm|library))?)\\b"
 				},
 				{
 					"begin": "\\b(def)",
@@ -53,18 +53,20 @@
 					},
 					"patterns": [
 						{
-							"begin": "\\{",
+							"begin": "\\{\\s*(test|partial|terminal|failing|(im|semi)?pure|(no)?inline)\\s*",
+							"beginCaptures": {
+								"1": {
+									"name": "keyword.other.wybe"
+								}
+							},
 							"patterns": [
 								{
-									"match": "\\b(test|partial|terminal|failing|pure|impure|semipure)\\b",
+									"match": ",\\s*(test|partial|terminal|failing|(im|semi)?pure|(no)?inline)\\s*",
 									"captures": {
 										"1": {
 											"name": "keyword.other.wybe"
 										}
 									}
-								},
-								{
-									"match": "\\b\\s*,\\s*"
 								},
 								{
 									"match": ".",
@@ -81,7 +83,7 @@
 							"name": "invalid.illegal"
 						}
 					],
-					"end": "(?:([_a-zA-Z]\\w*|`[@$%^~&|+*/=<>\\\\,;.:-]+`)|\\(\\s*[\\?!]?[_a-zA-Z]\\w*(?::(\\??[_a-zA-Z](?:[.]?[_a-zA-Z]\\w*)*))?\\s*([@$%^~&|+*/=<>\\\\,;.:-]+)\\s*[\\?!]?[_a-zA-Z]\\w*(?::(\\??[_a-zA-Z](?:[.]?[_a-zA-Z]\\w*)*))?\\))",
+					"end": "(?:([_a-zA-Z]\\w*|~|-|`\\[\\|\\]`|`[@$%^~&|+*/=<>\\\\,;.:-]+`)|\\(\\s*[\\?!]?[_a-zA-Z]\\w*(?:\\s*:\\s*(\\??[_a-zA-Z](?:\\.?[_a-zA-Z]\\w*)*))?\\s*([@$%^~&|+*/=<>\\\\,;.:-]+)\\s*[\\?!]?[_a-zA-Z]\\w*(?:\\s*:\\s*(\\??[_a-zA-Z](?:\\.?[_a-zA-Z]\\w*)*))?\\))",
 					"endCaptures": {
 						"1": {
 							"name": "entity.name.function.wybe"
@@ -98,7 +100,7 @@
 					}
 			  },
 				{
-					"match": "\\b[_a-zA-Z]\\w*(?::!([_a-zA-Z](?:[.]?[_a-zA-Z]\\w*)*))?:(\\??[_a-zA-Z]([.]?[_a-zA-Z]\\w*)*)",
+					"match": "\\b[_a-zA-Z]\\w*(?::!([_a-zA-Z](?:\\.?[_a-zA-Z]\\w*)*))?:(\\??[_a-zA-Z](\\.?[_a-zA-Z]\\w*)*)",
 					"captures": {
 						"1": {
 							"name": "entity.name.type.wybe"
@@ -109,7 +111,7 @@
 					}
 				},
 				{
-					"match": "\\b[_a-zA-Z]\\w*:!([_a-zA-Z](?:[.]?\\w)*)",
+					"match": ":(?:!?\\s*|\\s*\\?)([_a-zA-Z]*)",
 					"captures": {
 						"1": {
 							"name": "entity.name.type.wybe"
@@ -117,25 +119,21 @@
 					}
 				},
 				{
-					"name": "entity.name.type.wybe",
-					"match": "\\b(int|float|bool|string|char|phantom|machine_address|list|io|count)\\b"
-				},
-				{
 					"name": "storage.modifier.wybe",
-					"match": "\\b(pub|use)\\b"
+					"match": "\\b(pub|use|pragma|constructors?)\\b"
 				},
 				{
 					"name": "comment.line.number-sign.wybe",
 					"match": "#(?!\\|).*$\\n?"
 				},
 				{
+					"name": "comment.block.wybe",
 					"begin": "#\\|",
-					"end": "\\|#",
-					"name": "comment.block.wybe"
+					"end": "\\|#"
 				},
 				{
 					"name": "constant.character.wybe",
-					"match": "'(.|\\.)'"
+					"match": "'(\\\\.|[^\\\\])'"
 				},
 				{
 					"name": "constant.numeric.float.wybe",
@@ -175,7 +173,7 @@
 				}
 			]
 		},
-		"strings": {
+		"string": {
 			"name": "string.quoted.double.wybe",
 			"begin": "\"",
 			"end": "\"",
